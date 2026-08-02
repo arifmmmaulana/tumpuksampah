@@ -18,6 +18,9 @@ const jobs = [
   { input: 'logo-citra-garden.jpg', output: 'logo-citra-garden.jpg', op: (s) => s.resize({ height: 300, withoutEnlargement: true }).jpeg({ quality: 85, mozjpeg: true }) },
   { input: 'logo-rappo.jpg', output: 'logo-rappo.jpg', op: (s) => s.resize({ height: 300, withoutEnlargement: true }).jpeg({ quality: 85, mozjpeg: true }) },
   { input: 'logo-dlh-makassar.jpg', output: 'logo-dlh-makassar.jpg', op: (s) => s.resize({ height: 300, withoutEnlargement: true }).jpeg({ quality: 85, mozjpeg: true }) },
+  { input: 'logo-sentra.png', output: 'logo-sentra.jpg', op: (s) => s.resize({ height: 300, withoutEnlargement: true }).flatten({ background: '#ffffff' }).jpeg({ quality: 85, mozjpeg: true }) },
+  { input: 'logo-sofi.jpg', output: 'logo-sofi.jpg', op: (s) => s.resize({ height: 300, withoutEnlargement: true }).jpeg({ quality: 85, mozjpeg: true }) },
+  { input: 'logo-no5.png', output: 'logo-no5.jpg', op: (s) => s.resize({ height: 300, withoutEnlargement: true }).flatten({ background: '#ffffff' }).jpeg({ quality: 85, mozjpeg: true }) },
 ];
 
 function kb(p) {

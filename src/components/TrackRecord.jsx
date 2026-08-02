@@ -5,6 +5,9 @@ import logoMama from '../assets/logo-mama.jpg';
 import logoCitraGarden from '../assets/logo-citra-garden.jpg';
 import logoRappo from '../assets/logo-rappo.jpg';
 import logoDlhMakassar from '../assets/logo-dlh-makassar.jpg';
+import logoSentra from '../assets/logo-sentra.jpg';
+import logoSofi from '../assets/logo-sofi.jpg';
+import logoNo5 from '../assets/logo-no5.jpg';
 
 function StatCard({ icon: Icon, end, suffix = '', label }) {
   const { ref, count } = useCountUp(end, 2000);
@@ -49,6 +52,9 @@ export default function TrackRecord() {
               <img src={logoCitraGarden} alt="Citra Garden" loading="lazy" decoding="async" style={{ maxHeight: '120px' }} />
               <img src={logoRappo} alt="Rappo" loading="lazy" decoding="async" style={{ maxHeight: '120px' }} />
               <img src={logoDlhMakassar} alt="DLH Makassar" loading="lazy" decoding="async" style={{ maxHeight: '120px' }} />
+              <img src={logoSentra} alt="Sentra" loading="lazy" decoding="async" style={{ maxHeight: '120px' }} />
+              <img src={logoSofi} alt="Sofi" loading="lazy" decoding="async" style={{ maxHeight: '120px' }} />
+              <img src={logoNo5} alt="No5" loading="lazy" decoding="async" style={{ maxHeight: '120px' }} />
             </div>
             <hr style={{ margin: '2rem 0', borderColor: 'var(--color-border)' }} />
             <div>

@@ -77,7 +77,7 @@ export default function Footer() {
               </li>
               <li style={{ display: 'flex', alignItems: 'center', gap: '1rem', color: 'rgba(255,255,255,0.7)' }}>
                 <Phone size={20} color="var(--color-primary-light)" style={{ flexShrink: 0 }} /> 
-                <span>0857-9694-5320</span>
+                <a href="https://wa.me/6285796945320" target="_blank" rel="noopener noreferrer" className="footer-link">0857-9694-5320</a>
               </li>
             </ul>
           </div>

@@ -128,7 +128,10 @@ export default function Pricing() {
           <div className="card" style={{ maxWidth: '800px', margin: '0 auto', borderTop: '4px solid var(--color-primary)' }}>
             <div className="grid grid-cols-2" style={{ gap: '2rem' }}>
               <div>
-                <h4 style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>Rp115.000 <span style={{ fontSize: '1rem', color: 'var(--color-text-light)', fontWeight: 'normal' }}>/bln</span></h4>
+                <h4 style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>Rp150.000 <span style={{ fontSize: '1rem', color: 'var(--color-text-light)', fontWeight: 'normal' }}>/bln</span></h4>
+                <div style={{ marginTop: '0.75rem', marginBottom: '1.25rem', padding: '0.75rem', backgroundColor: 'white', border: '1px solid var(--color-primary)', borderRadius: 'var(--radius-sm)', color: 'var(--color-primary-dark)', fontWeight: 'bold', fontSize: '0.85rem' }}>
+                  ⭐ Promo Spesial: Hanya Rp115.000/bln jika mendaftar bertiga (3 Paket Rumah Tangga)!
+                </div>
                 <ul style={{ listStyle: 'none', padding: 0, marginTop: '1.5rem' }}>
                   {householdFeatures.map((feature) => (
                     <li key={feature} style={{ display: 'flex', gap: '0.5rem', marginBottom: '0.75rem' }}>
@@ -140,13 +143,12 @@ export default function Pricing() {
               <div style={{ background: 'var(--color-bg-alt)', padding: '1.5rem', borderRadius: 'var(--radius-sm)' }}>
                 <h5 className="mb-2">Pilihan Durasi</h5>
                 <ul style={{ listStyle: 'none', padding: 0, marginBottom: '1.5rem', color: 'var(--color-text-light)' }}>
-                  <li className="mb-1"><strong>3 Bulan:</strong> Rp345.000</li>
-                  <li className="mb-1"><strong>6 Bulan:</strong> Rp690.000</li>
-                  <li className="mb-1" style={{ color: 'var(--color-primary)', fontWeight: 'bold' }}>1 Tahun: Rp1.242.000 (Hemat 10%)</li>
+                  <li className="mb-1"><strong>3 Bulan:</strong> Rp450.000</li>
+                  <li className="mb-1"><strong>6 Bulan:</strong> Rp900.000</li>
+                  <li className="mb-1" style={{ color: 'var(--color-primary)', fontWeight: 'bold' }}>1 Tahun: Rp1.620.000 (Hemat 10%)</li>
                 </ul>
-                <p style={{ fontSize: '0.85rem', color: 'var(--color-text-light)', fontStyle: 'italic' }}>
-                  *Minimal pembayaran awal 3 bulan. <br />
-                  <strong>Spesial:</strong> Ajak 10 tetangga, Gratis 1 bulan!
+                <p style={{ fontSize: '0.85rem', color: 'var(--color-text-light)', fontStyle: 'italic', marginBottom: 0 }}>
+                  *Minimal pembayaran awal 3 bulan.
                 </p>
               </div>
             </div>

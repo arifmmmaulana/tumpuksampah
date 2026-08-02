@@ -139,7 +139,7 @@ export default function RegistrationForm({ onClose }) {
         onClick={(e) => e.stopPropagation()}
       >
         <h3 style={{ marginTop: 0, color: 'var(--color-primary)', marginBottom: '1.5rem' }}>
-          Formulir Pendaftaran
+          Registrasi Untuk Rumah Tangga
         </h3>
 
         <div className="form-scroll">

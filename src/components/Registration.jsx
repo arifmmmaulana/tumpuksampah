@@ -1,8 +1,11 @@
 import { useState } from 'react';
+import { X } from 'lucide-react';
 import RegistrationForm from './RegistrationForm';
+import BusinessRegistrationForm from './BusinessRegistrationForm';
 
 export default function Registration() {
-  const [showForm, setShowForm] = useState(false);
+  const [showSelectModal, setShowSelectModal] = useState(false);
+  const [activeForm, setActiveForm] = useState(null);
 
   const timelineSteps = [
     {
@@ -11,7 +14,7 @@ export default function Registration() {
         <>
           Isi formulir pendaftaran dengan klik tombol di bawah: <br />
           <button
-            onClick={() => setShowForm(true)}
+            onClick={() => setShowSelectModal(true)}
             style={{
               color: 'var(--color-primary)',
               fontWeight: 'bold',
@@ -87,7 +90,94 @@ export default function Registration() {
         </div>
       </div>
 
-      {showForm && <RegistrationForm onClose={() => setShowForm(false)} />}
+      {showSelectModal && (
+        <div className="modal-overlay" onClick={() => setShowSelectModal(false)}>
+          <div className="modal-content" style={{ maxWidth: '480px', width: '100%', textAlign: 'center' }} onClick={(e) => e.stopPropagation()}>
+            <h3 style={{ marginTop: 0, color: 'var(--color-primary)', marginBottom: '1.5rem' }}>
+              Pilih Jenis Registrasi
+            </h3>
+            
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginBottom: '1.5rem' }}>
+              <button 
+                onClick={() => {
+                  setActiveForm('household');
+                  setShowSelectModal(false);
+                }}
+                className="card"
+                style={{
+                  textAlign: 'left',
+                  padding: '1.25rem',
+                  border: '1px solid var(--color-border)',
+                  borderRadius: 'var(--radius-md)',
+                  cursor: 'pointer',
+                  backgroundColor: 'var(--color-bg)',
+                  transition: 'all 0.2s ease',
+                  fontFamily: 'inherit',
+                  width: '100%'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = 'var(--color-primary)';
+                  e.currentTarget.style.transform = 'translateY(-2px)';
+                  e.currentTarget.style.boxShadow = '0 4px 12px rgba(0,0,0,0.05)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = 'var(--color-border)';
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.boxShadow = 'none';
+                }}
+              >
+                <h4 style={{ color: 'var(--color-primary-dark)', margin: '0 0 0.25rem 0', fontSize: '1.1rem' }}>
+                  Registrasi Untuk Rumah Tangga
+                </h4>
+                <p style={{ color: 'var(--color-text-light)', margin: 0, fontSize: '0.85rem' }}>
+                  Layanan pengangkutan sampah organik mingguan untuk hunian Anda.
+                </p>
+              </button>
+
+              <button 
+                onClick={() => {
+                  setActiveForm('business');
+                  setShowSelectModal(false);
+                }}
+                className="card"
+                style={{
+                  textAlign: 'left',
+                  padding: '1.25rem',
+                  border: '1px solid var(--color-border)',
+                  borderRadius: 'var(--radius-md)',
+                  cursor: 'pointer',
+                  backgroundColor: 'var(--color-bg)',
+                  transition: 'all 0.2s ease',
+                  fontFamily: 'inherit',
+                  width: '100%'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = 'var(--color-primary)';
+                  e.currentTarget.style.transform = 'translateY(-2px)';
+                  e.currentTarget.style.boxShadow = '0 4px 12px rgba(0,0,0,0.05)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = 'var(--color-border)';
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.boxShadow = 'none';
+                }}
+              >
+                <h4 style={{ color: 'var(--color-primary-dark)', margin: '0 0 0.25rem 0', fontSize: '1.1rem' }}>
+                  Registrasi Untuk Bisnis
+                </h4>
+                <p style={{ color: 'var(--color-text-light)', margin: 0, fontSize: '0.85rem' }}>
+                  Kontrak resmi dengan fasilitas ember lebih banyak & laporan sampah terkelola.
+                </p>
+              </button>
+            </div>
+
+            <button className="modal-close-btn" onClick={() => setShowSelectModal(false)}><X size={20} /></button>
+          </div>
+        </div>
+      )}
+
+      {activeForm === 'household' && <RegistrationForm onClose={() => setActiveForm(null)} />}
+      {activeForm === 'business' && <BusinessRegistrationForm onClose={() => setActiveForm(null)} />}
     </section>
   );
 }
