@@ -30,6 +30,11 @@
   gap: 0.5rem;
 }
 
+.admin-logo-img {
+  height: 40px;
+  width: auto;
+}
+
 .admin-logo .badge {
   font-size: 0.75rem;
   background-color: var(--color-primary-light);

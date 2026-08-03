@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '../lib/supabase';
 import './AdminDashboard.css';
+import logo from '../assets/logo.png';
 import {
   LogOut,
   Search,
@@ -222,13 +223,10 @@ export default function AdminDashboard({ onBackToWeb }) {
       {/* Header */}
       <header className="admin-header">
         <div className="admin-logo">
-          <span>Tumpuk Sampah</span>
+          <img src={logo} alt="Tumpuk Sampah Logo" className="admin-logo-img" />
           <span className="badge">Admin Panel</span>
         </div>
         <div className="admin-nav-actions">
-          <button onClick={onBackToWeb} className="btn-back-web">
-            Lihat Landing Page
-          </button>
           <button onClick={handleLogout} className="btn-logout">
             <LogOut size={16} />
             Keluar

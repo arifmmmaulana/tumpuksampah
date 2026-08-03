@@ -12,6 +12,8 @@ import AdminDashboard from './components/AdminDashboard';
 
 function App() {
   const [isAdmin, setIsAdmin] = useState(false);
+  const [showSelectModal, setShowSelectModal] = useState(false);
+  const [activeForm, setActiveForm] = useState(null);
 
   useEffect(() => {
     const handleUrlChange = () => {
@@ -49,9 +51,14 @@ function App() {
       <TrackRecord />
       <Workflow />
       <Pricing />
-      <Registration />
+      <Registration 
+        showSelectModal={showSelectModal}
+        setShowSelectModal={setShowSelectModal}
+        activeForm={activeForm}
+        setActiveForm={setActiveForm}
+      />
       <FAQ />
-      <Footer />
+      <Footer onStartSubscription={() => setShowSelectModal(true)} />
     </>
   );
 }

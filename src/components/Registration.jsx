@@ -1,11 +1,8 @@
-import { useState } from 'react';
 import { X } from 'lucide-react';
 import RegistrationForm from './RegistrationForm';
 import BusinessRegistrationForm from './BusinessRegistrationForm';
 
-export default function Registration() {
-  const [showSelectModal, setShowSelectModal] = useState(false);
-  const [activeForm, setActiveForm] = useState(null);
+export default function Registration({ showSelectModal, setShowSelectModal, activeForm, setActiveForm }) {
 
   const timelineSteps = [
     {

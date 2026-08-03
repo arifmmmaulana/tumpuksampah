@@ -16,7 +16,7 @@ const YoutubeIcon = ({ size = 20, color }) => (
   </svg>
 );
 
-export default function Footer() {
+export default function Footer({ onStartSubscription }) {
   const ctaRef = useScrollReveal();
   const linksRef = useScrollReveal();
 
@@ -39,12 +39,12 @@ export default function Footer() {
               "Semakin banyak sampah yang dihasilkan, semakin besar tanggung jawab kita atau biaya yang harus dikeluarkan. Kata kuncinya ada pada TANGGUNG JAWAB."
             </p>
             <p style={{ color: 'rgba(255,255,255,0.9)', maxWidth: '600px', margin: '0 auto 2.5rem' }}>
-              Jangan ragu untuk memulai langkah baik ini untuk lingkungan kita. Bagikan juga informasi ini ke komunitas atau grup perumahan Anda!
+              Jangan ragu untuk memulai langkah baik ini untuk lingkungan kita. Bagikan juga informasi ini ke komunitas or grup perumahan Anda!
             </p>
             <button 
               className="btn" 
               style={{ background: 'white', color: 'var(--color-primary-dark)' }}
-              onClick={() => document.getElementById('pricing').scrollIntoView({ behavior: 'smooth' })}
+              onClick={onStartSubscription}
             >
               Mulai Berlangganan <ArrowRight size={20} />
             </button>

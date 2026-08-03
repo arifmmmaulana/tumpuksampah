@@ -1,4 +1,4 @@
-import { TrendingUp, Leaf, Users } from 'lucide-react';
+import { TrendingUp, Users } from 'lucide-react';
 import useScrollReveal from '../hooks/useScrollReveal';
 import useCountUp from '../hooks/useCountUp';
 import logoMama from '../assets/logo-mama.jpg';
@@ -37,9 +37,8 @@ export default function TrackRecord() {
             <p style={{ color: 'var(--color-text-light)' }}>Bersama klien & mitra dari berbagai kalangan, kami terus berupaya menciptakan dampak positif.</p>
           </div>
 
-          <div className="grid grid-cols-3 mb-8">
+          <div className="grid grid-cols-2 mb-8">
             <StatCard icon={TrendingUp} end={12} suffix="+" label="Ton Sampah Terkelola" />
-            <StatCard icon={Leaf} end={100} label="Karbon Terselamatkan" />
             <StatCard icon={Users} end={360} label="Orang Teredukasi" />
           </div>
         </div>
