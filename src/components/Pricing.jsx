@@ -14,26 +14,26 @@ const householdFeatures = [
 const businessPackages = [
   {
     name: 'STARTER',
-    price: 'Rp500Rb',
+    price: 'Rp650Rb',
     tagline: 'Bisnis rumahan & kafe kecil',
     features: ['5 Ember 20L', '1x pick up / pekan', '10Kg Kompos'],
   },
   {
     name: 'GREEN',
-    price: 'Rp1.5Jt',
+    price: 'Rp1.95Jt',
     tagline: 'Homestay, coffeeshop, kantin',
     features: ['10 Ember 20L', '3x pick up / pekan', '25Kg Kompos'],
     popular: true,
   },
   {
     name: 'SUSTAIN',
-    price: 'Rp2.5Jt',
+    price: 'Rp3.25Jt',
     tagline: 'Hotel, restoran, coffeeshop besar',
     features: ['20 Ember 20L', '3x pick up / pekan', 'Laporan Sampah', '50Kg Kompos'],
   },
   {
     name: 'IMPACT',
-    price: 'Rp3.5Jt',
+    price: 'Rp4.5Jt',
     tagline: 'Hotel skala besar & kompleks perumahan',
     features: ['30 Ember 20L', '3x pick up / pekan', 'Laporan Sampah', '75Kg Kompos'],
     dark: true,
