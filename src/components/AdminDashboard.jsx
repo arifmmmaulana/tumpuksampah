@@ -7,21 +7,14 @@ import {
   Search,
   Eye,
   Download,
-  Calendar,
   Briefcase,
   User,
-  MapPin,
-  Phone,
-  Mail,
-  Award,
   Clock,
   Shield,
   Layers,
   Sparkles,
   FileText,
   ExternalLink,
-  ChevronRight,
-  TrendingUp,
 } from 'lucide-react';
 
 export default function AdminDashboard({ onBackToWeb }) {

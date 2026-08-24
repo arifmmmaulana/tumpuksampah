@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { X, CheckCircle, MapPin } from 'lucide-react';
 import { supabase } from '../lib/supabase';
+import TurnstileWidget from './TurnstileWidget';
 
 const pekerjaanOptions = [
   'Pebisnis / Pedagang',
@@ -88,6 +89,7 @@ const initialFormData = {
 
 export default function MinjelForm({ onClose }) {
   const [formData, setFormData] = useState(initialFormData);
+  const [turnstileToken, setTurnstileToken] = useState(null);
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState('');
@@ -106,6 +108,11 @@ export default function MinjelForm({ onClose }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!turnstileToken) {
+      setError('Mohon selesaikan verifikasi keamanan (Turnstile).');
+      return;
+    }
 
     const requiredFields = [
       'nama', 'whatsapp', 'alamat', 'google_maps_link',
@@ -482,6 +489,15 @@ export default function MinjelForm({ onClose }) {
                 onChange={handleChange}
               />
             </div>
+
+            <TurnstileWidget
+              onVerify={(token) => {
+                setTurnstileToken(token);
+                setError('');
+              }}
+              onExpire={() => setTurnstileToken(null)}
+              onError={() => setTurnstileToken(null)}
+            />
 
             <button type="submit" className="form-btn-submit" disabled={loading}>
               {loading ? 'Mengirim...' : 'Kirim Pendaftaran'}

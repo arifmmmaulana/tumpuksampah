@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { X, CheckCircle, Upload, FileText } from 'lucide-react';
 import { supabase } from '../lib/supabase';
+import TurnstileWidget from './TurnstileWidget';
 
 const paketOptions = ['Starter', 'Green', 'Sustain', 'Impact'];
 const durasiOptions = ['3 Bulan', '6 Bulan', '12 Bulan'];
@@ -32,6 +33,7 @@ const initialFormData = {
 
 export default function BusinessRegistrationForm({ onClose }) {
   const [formData, setFormData] = useState(initialFormData);
+  const [turnstileToken, setTurnstileToken] = useState(null);
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState('');
@@ -68,6 +70,11 @@ export default function BusinessRegistrationForm({ onClose }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!turnstileToken) {
+      setError('Mohon selesaikan verifikasi keamanan (Turnstile).');
+      return;
+    }
 
     const requiredFields = [
       'nama_bisnis', 'jumlah_karyawan', 'tahun_berdiri', 'nama', 'jabatan',
@@ -434,6 +441,15 @@ export default function BusinessRegistrationForm({ onClose }) {
                 onChange={handleChange}
               />
             </div>
+
+            <TurnstileWidget
+              onVerify={(token) => {
+                setTurnstileToken(token);
+                setError('');
+              }}
+              onExpire={() => setTurnstileToken(null)}
+              onError={() => setTurnstileToken(null)}
+            />
 
             <button type="submit" className="form-btn-submit" disabled={loading}>
               {loading ? 'Mengirim...' : 'Kirim Pendaftaran'}
