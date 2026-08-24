@@ -564,7 +564,9 @@ export default function AdminDashboard({ onBackToWeb }) {
                     <div className="detail-item detail-grid-full">
                       {selectedRecord.logo_bisnis ? (
                         <div className="logo-preview-box">
-                          {selectedRecord.logo_bisnis.startsWith('data:image/') ? (
+                          {selectedRecord.logo_bisnis.startsWith('data:image/') ||
+                          selectedRecord.logo_bisnis.startsWith('http') ||
+                          /\.(png|jpe?g|webp|svg|gif)/i.test(selectedRecord.logo_bisnis) ? (
                             <img
                               src={selectedRecord.logo_bisnis}
                               alt="Logo Bisnis"
@@ -578,11 +580,13 @@ export default function AdminDashboard({ onBackToWeb }) {
                           )}
                           <a
                             href={selectedRecord.logo_bisnis}
+                            target="_blank"
+                            rel="noopener noreferrer"
                             download={`${selectedRecord.nama_bisnis.replace(/\s+/g, '_')}_logo`}
                             className="btn-download-logo"
                           >
                             <Download size={14} />
-                            Download Logo
+                            Buka / Download Logo
                           </a>
                         </div>
                       ) : (

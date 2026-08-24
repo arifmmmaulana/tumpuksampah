@@ -33,6 +33,7 @@ const initialFormData = {
 
 export default function BusinessRegistrationForm({ onClose }) {
   const [formData, setFormData] = useState(initialFormData);
+  const [logoFile, setLogoFile] = useState(null);
   const [turnstileToken, setTurnstileToken] = useState(null);
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -48,24 +49,17 @@ export default function BusinessRegistrationForm({ onClose }) {
     const file = e.target.files[0];
     if (!file) return;
 
-    if (file.size > 10 * 1024 * 1024) {
-      setError('Ukuran file maksimal 10 MB.');
+    if (file.size > 5 * 1024 * 1024) {
+      setError('Ukuran file maksimal 5 MB.');
       return;
     }
 
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      setFormData((prev) => ({
-        ...prev,
-        logo_bisnis: reader.result,
-        logo_name: file.name,
-      }));
-      setError('');
-    };
-    reader.onerror = () => {
-      setError('Gagal membaca file. Silakan coba lagi.');
-    };
-    reader.readAsDataURL(file);
+    setLogoFile(file);
+    setFormData((prev) => ({
+      ...prev,
+      logo_name: file.name,
+    }));
+    setError('');
   };
 
   const handleSubmit = async (e) => {
@@ -89,27 +83,10 @@ export default function BusinessRegistrationForm({ onClose }) {
       }
     }
 
-    if (!formData.logo_bisnis) {
+    if (!logoFile) {
       setError('Mohon upload logo bisnis Anda.');
       return;
     }
-
-    const submitData = {
-      nama_bisnis: formData.nama_bisnis.trim(),
-      jumlah_karyawan: formData.jumlah_karyawan.trim(),
-      tahun_berdiri: formData.tahun_berdiri.trim(),
-      nama: formData.nama.trim(),
-      jabatan: formData.jabatan.trim(),
-      whatsapp: formData.whatsapp.trim(),
-      alamat: formData.alamat.trim(),
-      paket: formData.paket,
-      durasi_langganan: formData.durasi_langganan,
-      alasan_kerjasama: formData.alasan_kerjasama.trim(),
-      syarat_ketentuan: formData.syarat_ketentuan,
-      collab_publikasi: formData.collab_publikasi,
-      arah_kompos: formData.arah_kompos,
-      logo_bisnis: formData.logo_bisnis,
-    };
 
     setLoading(true);
     setError('');
@@ -121,6 +98,45 @@ export default function BusinessRegistrationForm({ onClose }) {
         return;
       }
 
+      // 1. Upload file logo ke Supabase Storage bucket 'business-logos'
+      const fileExt = logoFile.name.split('.').pop() || 'png';
+      const sanitizedBizName = formData.nama_bisnis.trim().toLowerCase().replace(/[^a-z0-9]/g, '_').substring(0, 25);
+      const uniqueFileName = `${Date.now()}_${sanitizedBizName || 'logo'}.${fileExt}`;
+
+      const { error: uploadError } = await supabase.storage
+        .from('business-logos')
+        .upload(uniqueFileName, logoFile, {
+          cacheControl: '3600',
+          upsert: false,
+        });
+
+      if (uploadError) {
+        console.error('Storage upload error:', uploadError);
+        throw new Error('Gagal mengunggah logo ke Storage: ' + uploadError.message);
+      }
+
+      // 2. Dapatkan Public URL
+      const { data: { publicUrl } } = supabase.storage
+        .from('business-logos')
+        .getPublicUrl(uniqueFileName);
+
+      const submitData = {
+        nama_bisnis: formData.nama_bisnis.trim(),
+        jumlah_karyawan: formData.jumlah_karyawan.trim(),
+        tahun_berdiri: formData.tahun_berdiri.trim(),
+        nama: formData.nama.trim(),
+        jabatan: formData.jabatan.trim(),
+        whatsapp: formData.whatsapp.trim(),
+        alamat: formData.alamat.trim(),
+        paket: formData.paket,
+        durasi_langganan: formData.durasi_langganan,
+        alasan_kerjasama: formData.alasan_kerjasama.trim(),
+        syarat_ketentuan: formData.syarat_ketentuan,
+        collab_publikasi: formData.collab_publikasi,
+        arah_kompos: formData.arah_kompos,
+        logo_bisnis: publicUrl,
+      };
+
       const { error: insertError } = await supabase
         .from('business_registrations')
         .insert([submitData]);
@@ -129,7 +145,7 @@ export default function BusinessRegistrationForm({ onClose }) {
 
       setSuccess(true);
     } catch (err) {
-      setError('Gagal mengirim data. Silakan coba lagi.');
+      setError(err.message || 'Gagal mengirim data. Silakan coba lagi.');
       console.error('Business registration error:', err);
     } finally {
       setLoading(false);
