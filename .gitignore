@@ -36,6 +36,15 @@ dist-ssr
 *.docx
 supabase/.temp
 
+# Internal data & notes
+data*.md
+maps-baru.md
+dns-config.md
+api-hostinger.json
+
+# Assets backup
+src/assets-backup/
+
 # wrangler files
 .wrangler
 .dev.vars*
