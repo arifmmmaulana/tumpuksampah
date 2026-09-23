@@ -21,6 +21,7 @@ const jobs = [
   { input: 'logo-sentra.png', output: 'logo-sentra.jpg', op: (s) => s.resize({ height: 300, withoutEnlargement: true }).flatten({ background: '#ffffff' }).jpeg({ quality: 85, mozjpeg: true }) },
   { input: 'logo-sofi.jpg', output: 'logo-sofi.jpg', op: (s) => s.resize({ height: 300, withoutEnlargement: true }).jpeg({ quality: 85, mozjpeg: true }) },
   { input: 'logo-no5.png', output: 'logo-no5.jpg', op: (s) => s.resize({ height: 300, withoutEnlargement: true }).flatten({ background: '#ffffff' }).jpeg({ quality: 85, mozjpeg: true }) },
+  { input: 'logo-kemenkes.jpg', output: 'logo-kemenkes.jpg', op: (s) => s.resize({ height: 300, withoutEnlargement: true }).jpeg({ quality: 85, mozjpeg: true }) },
 ];
 
 function kb(p) {

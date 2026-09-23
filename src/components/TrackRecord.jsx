@@ -8,6 +8,7 @@ import logoDlhMakassar from '../assets/logo-dlh-makassar.jpg';
 import logoSentra from '../assets/logo-sentra.jpg';
 import logoSofi from '../assets/logo-sofi.jpg';
 import logoNo5 from '../assets/logo-no5.jpg';
+import logoKemenkes from '../assets/logo-kemenkes.jpg';
 
 function StatCard({ icon: Icon, end, suffix = '', label }) {
   const { ref, count } = useCountUp(end, 2000);
@@ -54,6 +55,7 @@ export default function TrackRecord() {
               <img src={logoSentra} alt="Sentra" loading="lazy" decoding="async" style={{ maxHeight: '120px' }} />
               <img src={logoSofi} alt="Sofi" loading="lazy" decoding="async" style={{ maxHeight: '120px' }} />
               <img src={logoNo5} alt="No5" loading="lazy" decoding="async" style={{ maxHeight: '120px' }} />
+              <img src={logoKemenkes} alt="Kemenkes" loading="lazy" decoding="async" style={{ maxHeight: '120px' }} />
             </div>
             <hr style={{ margin: '2rem 0', borderColor: 'var(--color-border)' }} />
             <div>
